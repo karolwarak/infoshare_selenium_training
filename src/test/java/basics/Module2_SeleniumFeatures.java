@@ -6,14 +6,20 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import utils.WebDriverCreators;
-import utils.WebDriverProvider;
+import org.openqa.selenium.interactions.Actions;
+import utils.driver.WebDriverCreators;
+import utils.driver.WebDriverProvider;
+import utils.waits.CustomWait;
+
+import java.util.List;
 
 import static org.junit.Assert.*;
 
 public class Module2_SeleniumFeatures {
 
     private final static String PAGE_HEADER_TEXT = "Selenium: Beginners Guide";
+    private final static String CONFIRMATION_BOX_MESSAGE = "This is double click";
+
 
     private WebDriver driver;
 
@@ -30,6 +36,40 @@ public class Module2_SeleniumFeatures {
 
         // This is a good practice to add negative message showing reason why test fails.
         assertEquals("Page header is incorrect.", PAGE_HEADER_TEXT, pageHeader.getText());
+    }
+
+    @Test
+    public void doubleClickOnButtonTest() {
+        driver.get("http://www.plus2net.com/javascript_tutorial/ondblclick-demo.php");
+        WebElement buttonToDoubleClick = driver.findElement(By.xpath("//input[contains(@value,'Double')]"));
+
+        Actions builder = new Actions(driver);
+        builder.doubleClick(buttonToDoubleClick).build().perform();
+
+        WebElement confirmationBox = driver.findElement(By.id("box"));
+
+        assertEquals("Button was not double clicked.", CONFIRMATION_BOX_MESSAGE, confirmationBox.getText());
+    }
+
+    @Test
+    public void dragAndDropTest() {
+        driver.get("http://marcojakob.github.io/dart-dnd/basic/web/");
+
+        List<WebElement> listOfDocuments = driver.findElements(By.xpath("//img[@class = 'document']"));
+
+        WebElement firstDocument = listOfDocuments.get(0);
+        WebElement trash = driver.findElement(By.xpath("//div[@class = 'trash']"));
+
+        Actions builder = new Actions(driver);
+        builder.dragAndDrop(firstDocument, trash).perform();
+
+        // After removing elements list needs to be refreshed.
+        List<WebElement> refreshedListOfDocuments = driver.findElements(By.xpath("//img[@class = 'document']"));
+
+        CustomWait customWait = new CustomWait(driver);
+        customWait.waitForDocumentDisappear(refreshedListOfDocuments);
+
+        assertEquals("Document has not been deleted.", 3, refreshedListOfDocuments.size());
     }
 
     @After

@@ -1,4 +1,4 @@
-package utils;
+package utils.driver;
 
 import org.openqa.selenium.WebDriver;
 

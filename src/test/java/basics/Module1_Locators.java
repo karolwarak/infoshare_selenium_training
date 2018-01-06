@@ -7,8 +7,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import utils.WebDriverCreators;
-import utils.WebDriverProvider;
 
 import java.util.List;
 
@@ -26,8 +24,8 @@ public class Module1_Locators {
 
         /*
         Better way, needs imports:
-        import utils.WebDriverCreators;
-        import utils.WebDriverProvider;
+        import utils.driver.WebDriverCreators;
+        import utils.driver.WebDriverProvider;
          */
         // driver = new WebDriverProvider(WebDriverCreators.FIREFOX_GECKO).getDriver();
 
