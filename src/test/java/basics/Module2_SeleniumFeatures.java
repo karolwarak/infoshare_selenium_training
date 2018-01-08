@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
 import utils.driver.WebDriverCreators;
 import utils.driver.WebDriverProvider;
 import utils.waits.CustomWait;
@@ -99,6 +100,46 @@ public class Module2_SeleniumFeatures {
         }
 
         assertEquals("Page header is incorrect.", PAGE_HEADER_TEXT, pageHeader.getText());
+    }
+
+    @Test
+    public void selectFromDropDownTest() {
+        driver.get("http://demoqa.com/registration/");
+
+        Select dropDownCountry = new Select(driver.findElement(By.id("dropdown_7")));
+
+        // Verify Dropdown does not support multiple selection
+        assertFalse("Dropdown supports multiple choice.", dropDownCountry.isMultiple());
+
+        // Verify Dropdown has 204 options for selection
+        assertEquals("There are no 204 countries on the list.", 204, dropDownCountry.getOptions().size());
+
+        dropDownCountry.selectByVisibleText("Poland");
+        assertEquals("Poland is not selected country.", "Poland", dropDownCountry.getFirstSelectedOption().getText());
+    }
+
+    @Test
+    public void setRadioButtonTest() {
+        driver.get("http://demoqa.com/registration/");
+
+        WebElement singleRadioButton = driver.findElement(By.xpath("//label[text() = 'Single']/following-sibling::input[1]"));
+
+        if (!singleRadioButton.isSelected())
+            singleRadioButton.click();
+
+        assertTrue("Radio button is not selected", singleRadioButton.isSelected());
+    }
+
+    @Test
+    public void setCheckBoxTest() {
+        driver.get("http://demoqa.com/registration/");
+
+        WebElement danceCheckBox = driver.findElement(By.xpath("//input[@value = 'dance']"));
+
+        if (!danceCheckBox.isSelected())
+            danceCheckBox.click();
+
+        assertTrue("Checkbox is not selected", danceCheckBox.isSelected());
     }
 
     @After
