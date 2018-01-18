@@ -45,21 +45,20 @@ public class RegistrationDDTWithJUnit {
     private String zipCode;
     private String country;
 
+    /* Instead of String[] we can use Object[] or other type. */
     @Parameterized.Parameters
     public static Collection testData() {
         return Arrays.asList(
-                new Object[][] {
-                        {"jan12345", "pass12345", "Jan", "Nowak", "505505505", "jannowak@gmail.com", "ul. Grunwaldzka 452",
-                                "Mieszkanie nr 12", "Gdansk", "Pomorskie", "12345", "POLAND"},
-                        {"John33", "fdser", "John", "Snow", "111222333", "john@gmail.com", "ul. Pomorska 222",
-                                "Mieszkanie nr 33", "Gdansk", "Pomorskie", "12345", "POLAND"},
-                        {"mich2", "wert555", "Michal", "Wozniak", "303987345", "mich3@gmail.com", "ul. Piastowska 3",
-                                "Mieszkanie nr 132", "Gdansk", "Pomorskie", "12345", "POLAND"}
-                } );
+                new String[] {"jan12345", "pass12345", "Jan", "Nowak", "505505505", "jannowak@gmail.com", "ul. Grunwaldzka 452",
+                        "Mieszkanie nr 12", "Gdansk", "Pomorskie", "12345", "POLAND"},
+                new String[] {"John33", "fdser", "John", "Snow", "111222333", "john@gmail.com", "ul. Pomorska 222",
+                        "Mieszkanie nr 33", "Gdansk", "Pomorskie", "12345", "POLAND"},
+                new String[] {"mich2", "wert555", "Michal", "Wozniak", "303987345", "mich3@gmail.com", "ul. Piastowska 3",
+                        "Mieszkanie nr 132", "Gdansk", "Pomorskie", "12345", "POLAND"});
     }
 
     public RegistrationDDTWithJUnit(String userName, String password, String firstName, String lastName, String phoneNumber,
-            String email, String address1, String address2, String city, String state, String zipCode, String country) {
+                                    String email, String address1, String address2, String city, String state, String zipCode, String country) {
         this.userName = userName;
         this.password = password;
         this.firstName = firstName;
