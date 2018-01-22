@@ -26,7 +26,7 @@ public class Module2_SeleniumFeatures {
 
     @Before
     public void setUp() {
-        driver = new WebDriverProvider(WebDriverCreators.FIREFOX_GECKO).getDriver();
+        driver = new WebDriverProvider(WebDriverCreators.CHROME).getDriver();
         driver.manage().window().maximize();
     }
 
@@ -84,7 +84,7 @@ public class Module2_SeleniumFeatures {
 
         long links = (Long) js.executeScript("var links = document.getElementsByTagName ('A'); return links.length");
 
-        assertEquals("Wrong number of links.",40, links);
+        assertEquals("Wrong number of links.",47, links);
     }
 
     @Test

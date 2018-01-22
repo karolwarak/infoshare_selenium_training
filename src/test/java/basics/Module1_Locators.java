@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.util.List;
@@ -19,8 +20,11 @@ public class Module1_Locators {
     @Before
     public void setUp() {
         // Tested with Firefox 46.0. Does not work with the newest version of FF.
-        System.setProperty("webdriver.firefox.marionette", "src/test/resources/drivers/macos/geckodriverMac");
-        driver = new FirefoxDriver();
+        // System.setProperty("webdriver.firefox.marionette", "src/test/resources/drivers/firefox/geckodriverMac");
+        // driver = new FirefoxDriver();
+
+        System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chrome/chromedriverMac");
+        driver = new ChromeDriver();
 
         /*
         Better way, needs imports:

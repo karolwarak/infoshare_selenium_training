@@ -4,9 +4,9 @@ import org.apache.commons.lang3.SystemUtils;
 
 public class GeckoDriverExecutor extends DriverExecutor {
 
-    private static final String GECKO_WINDOWS_PATH = "src/test/resources/drivers/windows/geckodriver.exe";
-    private static final String GECKO_MACOS_PATH = "src/test/resources/drivers/macos/geckodriverMac";
-    private static final String GECKO_LINUX_64_PATH = "src/test/resources/drivers/linux_x64/geckodriver_Linux64";
+    private static final String GECKO_WINDOWS_PATH = "src/test/resources/drivers/firefox/geckodriver.exe";
+    private static final String GECKO_MACOS_PATH = "src/test/resources/drivers/firefox/geckodriverMac";
+    private static final String GECKO_LINUX_64_PATH = "src/test/resources/drivers/firefox/geckodriver_Linux64";
 
     public static final String getProperDriverExecutable() {
         String osName = System.getProperty("os.name").toLowerCase();
