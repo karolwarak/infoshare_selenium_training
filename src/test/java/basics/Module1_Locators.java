@@ -27,11 +27,17 @@ public class Module1_Locators {
         driver = new ChromeDriver();
 
         /*
+
         Better way, needs imports:
         import utils.driver.WebDriverCreators;
         import utils.driver.WebDriverProvider;
-         */
-        // driver = new WebDriverProvider(WebDriverCreators.FIREFOX_GECKO).getDriver();
+
+        driver = new WebDriverProvider(WebDriverCreators.FIREFOX_GECKO).getDriver();
+
+        Top tip - you can use library for driver:
+        https://github.com/bonigarcia/webdrivermanager
+
+        */
 
         driver.manage().window().maximize();
     }
