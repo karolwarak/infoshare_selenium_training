@@ -62,7 +62,7 @@ public class Module2_SeleniumFeatures {
         WebElement trash = driver.findElement(By.xpath("//div[@class = 'trash']"));
 
         Actions builder = new Actions(driver);
-        builder.dragAndDrop(firstDocument, trash).perform();
+        builder.dragAndDrop(firstDocument, trash).build().perform();
 
         // After removing elements list needs to be refreshed.
         List<WebElement> refreshedListOfDocuments = driver.findElements(By.xpath("//img[@class = 'document']"));
