@@ -23,10 +23,12 @@ import static org.junit.Assert.assertTrue;
 public class Module3_Waits {
 
     private WebDriver driver;
+    private CustomWait customWait;
 
     @Before
     public void setUp() {
         driver = new WebDriverProvider(WebDriverCreators.FIREFOX_GECKO).getDriver();
+        customWait = new CustomWait(driver);
         driver.manage().window().maximize();
     }
 
@@ -52,6 +54,10 @@ public class Module3_Waits {
 
         WebElement aboutMeHeader = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h2[text() = 'About the Author']")));
 
+        // Other and better way
+        WebElement header = driver.findElement(By.xpath("//h2[text() = 'About the Author']"));
+        customWait.waitForElementToBeVisible(header);
+
         assertTrue("Header is not visible", aboutMeHeader.isDisplayed());
 
     }
@@ -71,7 +77,6 @@ public class Module3_Waits {
         // After removing elements list needs to be refreshed.
         List<WebElement> refreshedListOfDocuments = driver.findElements(By.xpath("//img[@class = 'document']"));
 
-        CustomWait customWait = new CustomWait(driver);
         customWait.waitForDocumentDisappear(refreshedListOfDocuments);
 
         assertEquals("Document has not been deleted.", 3, refreshedListOfDocuments.size());
