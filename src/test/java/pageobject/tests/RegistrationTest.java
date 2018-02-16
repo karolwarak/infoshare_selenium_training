@@ -31,6 +31,13 @@ public class RegistrationTest {
         driver = new WebDriverProvider(WebDriverCreators.FIREFOX_GECKO).getDriver();
         driver.manage().window().maximize();
 
+        /*
+        instead of the more standard Selenium findElement calls in the page object.
+        This simplifies your page object code because you don't need to define the findElement calls (PageFactory assumes you are running the find by name or ID).
+
+        PageFactory.initElements(driver, pageObjectClass) implicitly creates the findElement calls behind the scene.
+         */
+
         homePage = PageFactory.initElements(driver, HomePage.class);
         registrationPage = PageFactory.initElements(driver, RegistrationPage.class);
         registrationConfirmationPage = PageFactory.initElements(driver, RegistrationConfirmationPage.class);
