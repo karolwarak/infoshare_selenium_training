@@ -4,11 +4,13 @@ package basics;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import utils.ScreenShotOnFailure;
 import utils.driver.WebDriverCreators;
 import utils.driver.WebDriverProvider;
 
@@ -23,6 +25,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class Module4_AsserJAssertions {
 
     private WebDriver driver;
+
+    @Rule
+    public ScreenShotOnFailure failure = new ScreenShotOnFailure(driver);
 
     @Before
     public void setUp() {
@@ -87,6 +92,8 @@ public class Module4_AsserJAssertions {
 
         assertThat(confirmationBox.getText())
                 .as("Button was not double clicked.").isEqualTo(confirmationBoxMessage);
+
+        assertThat(confirmationBox.getText()).isEqualTo(confirmationBoxMessage).as("Button was not double clicked.");
 
         assertThat(confirmationBox.getText())
                 .as("Button was not double clicked.").startsWith("This is");
