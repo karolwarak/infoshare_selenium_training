@@ -26,9 +26,6 @@ public class Module4_AsserJAssertions {
 
     private WebDriver driver;
 
-    @Rule
-    public ScreenShotOnFailure failure = new ScreenShotOnFailure(driver);
-
     @Before
     public void setUp() {
         driver = new WebDriverProvider(WebDriverCreators.FIREFOX_GECKO).getDriver();

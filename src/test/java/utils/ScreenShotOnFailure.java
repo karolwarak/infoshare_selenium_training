@@ -4,9 +4,7 @@ import org.apache.commons.io.FileUtils;
 import org.junit.rules.MethodRule;
 import org.junit.runners.model.FrameworkMethod;
 import org.junit.runners.model.Statement;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -27,7 +25,9 @@ public class ScreenShotOnFailure implements MethodRule {
                 try {
                     statement.evaluate();
                 } catch (Throwable t) {
+                    // exception will be thrown only when a test fails.
                     captureScreenShot(frameworkMethod.getName());
+                    // rethrow to allow the failure to be reported by JUnit
                     throw t;
                 }
             }
@@ -35,7 +35,7 @@ public class ScreenShotOnFailure implements MethodRule {
             public void captureScreenShot(String fileName) throws IOException {
                 File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
                 fileName += UUID.randomUUID().toString();
-                File targetFile = new File("/tmp/" + fileName + ".png");
+                File targetFile = new File("Screenshot/" + fileName + ".png");
                 FileUtils.copyFile(scrFile, targetFile);
             }
         };

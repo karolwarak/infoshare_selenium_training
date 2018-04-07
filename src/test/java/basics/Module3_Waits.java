@@ -1,15 +1,14 @@
 package basics;
 
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.ScreenShotOnFailure;
 import utils.driver.WebDriverCreators;
 import utils.driver.WebDriverProvider;
 import utils.waits.CustomWait;
@@ -22,12 +21,19 @@ import static org.junit.Assert.assertTrue;
 
 public class Module3_Waits {
 
-    private WebDriver driver;
+    private static WebDriver driver;
     private CustomWait customWait;
+
+    @BeforeClass
+    public static void setUpDriverForScreenShotRule(){
+        driver = new WebDriverProvider(WebDriverCreators.FIREFOX_GECKO).getDriver();
+    }
+
+    @Rule
+    public ScreenShotOnFailure failure = new ScreenShotOnFailure(driver);
 
     @Before
     public void setUp() {
-        driver = new WebDriverProvider(WebDriverCreators.FIREFOX_GECKO).getDriver();
         customWait = new CustomWait(driver);
         driver.manage().window().maximize();
     }
@@ -48,7 +54,7 @@ public class Module3_Waits {
         driver.get("http://robertkaszubowski.com");
 
         WebDriverWait wait = new WebDriverWait(driver, 10);
-        WebElement aboutMeButton = wait.until(ExpectedConditions.elementToBeClickable(By.linkText("ABOUT ME")));
+        WebElement aboutMeButton = wait.until(ExpectedConditions.elementToBeClickable(By.linkText("ABOUT ME111")));
 
         aboutMeButton.click();
 
@@ -103,4 +109,6 @@ public class Module3_Waits {
     public void tearDown() {
         driver.close();
     }
+
+
 }
