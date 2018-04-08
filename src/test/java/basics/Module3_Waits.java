@@ -105,10 +105,11 @@ public class Module3_Waits {
         assertTrue("HOME button is not visible", homeButton.isDisplayed());
     }
 
-    @After
-    public void tearDown() {
-        driver.close();
+    @AfterClass
+    public static void cleanUp(){
+        if (driver != null){
+            driver.close();
+            driver.quit();
+        }
     }
-
-
 }

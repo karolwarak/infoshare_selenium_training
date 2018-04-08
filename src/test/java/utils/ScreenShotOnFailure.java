@@ -2,6 +2,8 @@ package utils;
 
 import org.apache.commons.io.FileUtils;
 import org.junit.rules.MethodRule;
+import org.junit.rules.TestWatcher;
+import org.junit.runner.Description;
 import org.junit.runners.model.FrameworkMethod;
 import org.junit.runners.model.Statement;
 import org.openqa.selenium.*;
@@ -10,7 +12,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
 
-public class ScreenShotOnFailure implements MethodRule {
+public class ScreenShotOnFailure extends TestWatcher {
 
     private WebDriver driver;
 
@@ -18,26 +20,25 @@ public class ScreenShotOnFailure implements MethodRule {
         this.driver = driver;
     }
 
-    public Statement apply(final Statement statement, final FrameworkMethod frameworkMethod, final Object o) {
-        return new Statement() {
-            @Override
-            public void evaluate() throws Throwable {
-                try {
-                    statement.evaluate();
-                } catch (Throwable t) {
-                    // exception will be thrown only when a test fails.
-                    captureScreenShot(frameworkMethod.getName());
-                    // rethrow to allow the failure to be reported by JUnit
-                    throw t;
-                }
-            }
+    @Override
+    protected void failed(Throwable e, Description description) {
+        try {
+            captureScreenShot(description.getMethodName());
+        } catch (IOException e1) {
+            System.out.println(e1.getMessage());
+        }
+    }
 
-            public void captureScreenShot(String fileName) throws IOException {
-                File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-                fileName += UUID.randomUUID().toString();
-                File targetFile = new File("Screenshot/" + fileName + ".png");
-                FileUtils.copyFile(scrFile, targetFile);
-            }
-        };
+    @Override
+    protected void finished(Description description) {
+        super.finished(description);
+        driver.close();
+    }
+
+    public void captureScreenShot(String fileName) throws IOException {
+        File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        fileName += UUID.randomUUID().toString();
+        File targetFile = new File("Screenshot/" + fileName + ".png");
+        FileUtils.copyFile(scrFile, targetFile);
     }
 }
