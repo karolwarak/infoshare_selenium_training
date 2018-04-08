@@ -25,18 +25,18 @@ public class Module3_Waits {
     private CustomWait customWait;
 
     @BeforeClass
-    public static void setUpDriverForScreenShotRule(){
+    public static void setDriver() {
         driver = new WebDriverProvider(WebDriverCreators.FIREFOX_GECKO).getDriver();
     }
-
-    @Rule
-    public ScreenShotOnFailure failure = new ScreenShotOnFailure(driver);
 
     @Before
     public void setUp() {
         customWait = new CustomWait(driver);
         driver.manage().window().maximize();
     }
+
+    @Rule
+    public ScreenShotOnFailure failure = new ScreenShotOnFailure(driver);
 
     @Test
     public void implicitWaitTest() {
@@ -106,10 +106,8 @@ public class Module3_Waits {
     }
 
     @AfterClass
-    public static void cleanUp(){
-        if (driver != null){
-            driver.close();
-            driver.quit();
-        }
+    public static void tearDown() {
+        driver.close();
     }
+
 }
