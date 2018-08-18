@@ -84,7 +84,7 @@ public class Module2_SeleniumFeatures {
 
         long links = (Long) js.executeScript("var links = document.getElementsByTagName ('A'); return links.length");
 
-        assertEquals("Wrong number of links.",45, links);
+        assertEquals("Wrong number of links.",44, links);
     }
 
     @Test
