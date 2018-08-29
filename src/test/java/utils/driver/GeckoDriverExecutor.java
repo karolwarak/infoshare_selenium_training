@@ -2,13 +2,13 @@ package utils.driver;
 
 import org.apache.commons.lang3.SystemUtils;
 
-public class GeckoDriverExecutor extends DriverExecutor {
+class GeckoDriverExecutor extends DriverExecutor {
 
     private static final String GECKO_WINDOWS_PATH = "src/test/resources/drivers/firefox/geckodriver.exe";
     private static final String GECKO_MACOS_PATH = "src/test/resources/drivers/firefox/geckodriverMac";
     private static final String GECKO_LINUX_64_PATH = "src/test/resources/drivers/firefox/geckodriver_Linux64";
 
-    public static final String getProperDriverExecutable() {
+    static String getProperDriverExecutable() {
         String osName = System.getProperty("os.name").toLowerCase();
         if (SystemUtils.IS_OS_MAC) {
             System.out.println("Mac OS X detected, assigning proper executable.");
