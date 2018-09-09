@@ -43,9 +43,12 @@ public class Module1_Locators {
     }
 
     @Test
-    public void verifyButtonVisibilityById() {
+    public void verifyButtonVisibilityById() throws InterruptedException {
         driver.get("http://book.theautomatedtester.co.uk/chapter2");
         WebElement buttonById = driver.findElement(By.id("but1"));
+
+        // Bad practice. Added only to see how it works.
+        Thread.sleep(3000);
 
         assertTrue("Button is not displayed.", buttonById.isDisplayed());
     }
