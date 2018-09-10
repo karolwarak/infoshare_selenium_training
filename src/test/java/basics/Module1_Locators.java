@@ -39,6 +39,7 @@ public class Module1_Locators {
 
         */
 
+        // We have many methods hidden here. Let's explore.
         driver.manage().window().maximize();
     }
 
