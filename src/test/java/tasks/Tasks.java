@@ -59,15 +59,19 @@ public class Tasks {
 
         dateField.click();
 
-        Select dropDownMonth = new Select(driver.findElement(By.xpath("//select[@class='ui-datepicker-month']")));
-        dropDownMonth.selectByVisibleText("Oct");
-        Select dropDownYear = new Select(driver.findElement(By.xpath("//select[@class='ui-datepicker-year']")));
-        dropDownYear.selectByVisibleText("2019");
-        WebElement dayOfTheMonth = driver.findElement(By.xpath("//a[text() = '21']"));
+        selectFromDropDown("month", "Oct");
+        selectFromDropDown("year", "2019");
+
+        WebElement dayOfTheMonth = driver.findElement(By.xpath(String.format("//a[text() = '%s']", "21")));
         dayOfTheMonth.click();
 
         assertThat(dateField.getAttribute("value"))
                 .as("Wrong date.").isEqualTo("10/21/2019");
+    }
+
+    private void selectFromDropDown(String dropDownName, String value){
+        Select select = new Select(driver.findElement(By.xpath(String.format("//select[@class='ui-datepicker-%s']", dropDownName))));
+        select.selectByVisibleText(value);
     }
 
     @Test
