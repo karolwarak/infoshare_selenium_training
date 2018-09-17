@@ -4,13 +4,11 @@ package basics;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import utils.ScreenShotOnFailure;
 import utils.driver.WebDriverCreators;
 import utils.driver.WebDriverProvider;
 
