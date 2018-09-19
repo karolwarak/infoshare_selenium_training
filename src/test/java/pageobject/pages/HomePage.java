@@ -1,7 +1,9 @@
 package pageobject.pages;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class HomePage {
 
@@ -25,6 +27,11 @@ public class HomePage {
 
     @FindBy(name = "login")
     private WebElement signInButton;
+
+    // Alternative way of initializing elements is to do it in the constructor.
+    public HomePage (WebDriver driver){
+        PageFactory.initElements(driver, this);
+    }
 
     public void clickOnSignOnLink() {
         signOnLinkElement.click();

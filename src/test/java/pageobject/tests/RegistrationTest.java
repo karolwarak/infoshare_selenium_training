@@ -32,10 +32,15 @@ public class RegistrationTest {
         driver.manage().window().maximize();
 
         /*
-        instead of the more standard Selenium findElement calls in the page object.
-        This simplifies your page object code because you don't need to define the findElement calls (PageFactory assumes you are running the find by name or ID).
+        Instead of the more standard Selenium findElement calls in the page object.
+        This simplifies your page object code because you don't need to define the findElement calls
+        (PageFactory assumes you are running the find by name or ID).
 
         PageFactory.initElements(driver, pageObjectClass) implicitly creates the findElement calls behind the scene.
+
+        Alternative way is to init elements in page class constructor and in test use:
+
+        homePage = new HomePage(driver);
          */
 
         homePage = PageFactory.initElements(driver, HomePage.class);
