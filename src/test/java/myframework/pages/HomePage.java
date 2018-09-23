@@ -20,6 +20,8 @@ public class HomePage {
     public HomePage(WebDriver driver){
         this.driver = driver;
         waits = new Waits(driver);
+
+        // Remember to use this! If you use HomePage.class you will get memory leak!
         PageFactory.initElements(driver, this);
     }
 

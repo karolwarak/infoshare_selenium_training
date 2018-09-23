@@ -29,6 +29,8 @@ public class HomePage {
     private WebElement signInButton;
 
     // Alternative way of initializing elements is to do it in the constructor.
+    // Better Way!
+    // Remember to use this! If you use HomePage.class you will get memory leak!
     public HomePage (WebDriver driver){
         PageFactory.initElements(driver, this);
     }
