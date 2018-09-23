@@ -12,6 +12,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.driver.WebDriverCreators;
 import utils.driver.WebDriverProvider;
+import utils.waits.CustomWait;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -92,4 +93,5 @@ public class Tasks {
                 "Blog\n" +
                 "About");
     }
+
 }
