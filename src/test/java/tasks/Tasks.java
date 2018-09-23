@@ -79,19 +79,13 @@ public class Tasks {
     public void checkMenuItems() {
         driver.get("https://jqueryui.com/demos/");
 
-        List<WebElement> listOfMenuItems = driver.findElements(By.id("menu-top"));
+        List<WebElement> listOfMenuItems = driver.findElements(By.xpath("//ul[@id='menu-top']/li"));
 
         List<String> listOfTextsFromMenuItems = new ArrayList<>();
         for (WebElement e : listOfMenuItems) listOfTextsFromMenuItems.add(e.getText());
 
-        assertThat(listOfTextsFromMenuItems).contains("Demos\n" +
-                "Download\n" +
-                "API Documentation\n" +
-                "Themes\n" +
-                "Development\n" +
-                "Support\n" +
-                "Blog\n" +
-                "About");
+        assertThat(listOfTextsFromMenuItems)
+                .contains("Demos", "Download", "API Documentation", "Themes", "Development", "Support", "Blog", "About");
     }
 
 }

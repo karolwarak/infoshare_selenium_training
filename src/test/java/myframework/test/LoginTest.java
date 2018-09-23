@@ -25,6 +25,8 @@ public class LoginTest {
 
         loginPage = new LoginPage(driver);
         homePage = new HomePage(driver);
+
+        driver.get("https://www.phptravels.net/login");
     }
 
     @After
@@ -34,7 +36,6 @@ public class LoginTest {
 
     @Test
     public void loginUserTest() {
-        driver.get("https://www.phptravels.net/login");
         loginPage.loginToThePage("user@phptravels.com", "demouser");
 
         assertThat(homePage.getTextFromLoginLabel()).as("User is not logged in.").isEqualTo("Hi, Johny Smith");
