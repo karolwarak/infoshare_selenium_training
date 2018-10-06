@@ -36,4 +36,10 @@ public class CustomWait {
         WebDriverWait wait = new WebDriverWait(driver, EXPLICIT_WAIT_TIMEOUT);
         WebElement waitForElement = wait.until(ExpectedConditions.visibilityOf(element));
     }
+
+    // Useful when "Other element would receive the click" error.
+    public void waitForElementToNotBeVisible(WebElement element) {
+        WebDriverWait wait = new WebDriverWait(driver, EXPLICIT_WAIT_TIMEOUT);
+        Boolean waitForElement = wait.until(ExpectedConditions.invisibilityOf(element));
+    }
 }
